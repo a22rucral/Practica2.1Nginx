@@ -190,7 +190,8 @@ Si todo ha salido bien, al buscar tu dominio en el navegador debe darte esta sal
 ### Cuestiones finales 
 1. ¿Que pasa si no hago el link simbólico entre sites-available y sites-enabled de mi sitio web?
    
-   Si no hacemos el enlace simbólico, nginx no activará la configuración del sitio web. **Sites-avaliable** solamente guarda los archivos, nginx, usa las configuraciones que están en **sites-enabled**. 
-2. ¿Qué pasa si no le doy los permisos adecuados a /var/www/nombre_web?
+   Si no hacemos el enlace simbólico, nginx no activará la configuración del sitio web. **Sites-avaliable** solamente guarda los archivos, nginx, usa las configuraciones que están en **sites-enabled**.
+   
+3. ¿Qué pasa si no le doy los permisos adecuados a /var/www/nombre_web?
    
    Que no se podrá acceder desde ningún servidor a los archivos del sitio.
