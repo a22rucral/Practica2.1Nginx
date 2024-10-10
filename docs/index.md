@@ -10,7 +10,7 @@ sudo apt install nginx
 ```
 
 Si queremos comprobar que se ha instalado correctamente, ejecutaremos el siguiente comando:
-![Comando2](imagens/2comandoStatusNginx.png)
+![Comando2](../imagens/2comandoStatusNginx.png)
 
 
 
@@ -19,28 +19,28 @@ Si queremos comprobar que se ha instalado correctamente, ejecutaremos el siguien
 Todos los archivos que formarán parte de un sitio web se organizarán en carpetas. Estas suelen estar en **/var/www**.
 Por ello crearemos la carpeta con el nombre de nuestro sitio web; 
 
-![Comando3](imagens/3comandoCreacionCarpetaWeb.png)
+![Comando3](../imagens/3comandoCreacionCarpetaWeb.png)
 
 Una vez creada la carpeta, deberemos clonar este repositorio de github dentro de la misma ; 
 https://github.com/cloudacademy/static-website-example
 
 Es necesario que si no teneis instalado git en vuestra máquina que lo instaleis con el siguiente comando: 
-![Comando4](imagens/4comandoInstalarGit.png)
+![Comando4](../imagens/4comandoInstalarGit.png)
 
 Y para la clonación usarás el siguiente: 
-![Comando5](imagens/5comandoClonacionGit.png)
+![Comando5](../imagens/5comandoClonacionGit.png)
 
 Ahora, pondremos a **www-data** como propietario de esta carpeta y de todo lo que haya dentro. 
-![Comando6](imagens/6comandoHacerPropietario.png)
+![Comando6](../imagens/6comandoHacerPropietario.png)
 
 Le daremos los permisos necesarios para evitar errores de acceso al entrar en el sitio web: 
-![Comando7](imagens/7comandoObtenciónPermisos.png)
+![Comando7](../imagens/7comandoObtenciónPermisos.png)
 
 Para comprobar que todo funciona, podemos acceder desde nuestro cliente al servidor. Primero obtendremos la ip con el siguiente comando; 
-![Comando9](imagens/9comandoObtencionIpMAquina.png)
+![Comando9](../imagens/9comandoObtencionIpMAquina.png)
 
 Solo queda introducirlo en el navegador y si todo va bien tendremos el siguiente resultado. 
-![Comando8](imagens/8comandoComprobacionServidor.png)
+![Comando8](../imagens/8comandoComprobacionServidor.png)
 
 
 ## Configuración de servidor web NGINX.
@@ -48,42 +48,42 @@ En Nginx hay dos rutas importantes. Una de ellas es **sites-available**, esta ca
 
 EN **sites-available** hay un archivo default que es la página que muestra si entramos al servidor sin ningún sitio web. Para que nginx muestre el contenido de nuestra web, necesitaremos crear un bloque de servidor con las directivas correctas. Para ello crearemos un archivo nuevo en /etc/nginx/sites-available/nuestro-dominio: 
 
-![Comando11](imagens/11comandoEntrarSitestAvaliable.png)
+![Comando11](../imagens/11comandoEntrarSitestAvaliable.png)
 Y lo modificaremos de la siguiente forma: 
-![Comando10](imagens/10comandoConfSitesAvaliable.png)
+![Comando10](../imagens/10comandoConfSitesAvaliable.png)
 
 Ruta del index ; 
-![Comando12](imagens/12comandoCarpetaGitDesc.png)
+![Comando12](../imagens/12comandoCarpetaGitDesc.png)
 
 Entre el index y los archivos, crearemos un archivo simbólico de los sitios que están habilitados, para que se de de alta automáticamente.
-![Comando13](imagens/13comandoArchivoSitesEnable.png)
+![Comando13](../imagens/13comandoArchivoSitesEnable.png)
 
 Reiniciaremos el servidor para aplicar todos los cambios hechos: 
-![Comando14](imagens/14comandoRestartNginx.png)
+![Comando14](../imagens/14comandoRestartNginx.png)
 
 ## Comprobaciones. 
 Al no poseer servidor DNS que traduzca los nombres a IPs, debemos hacerlo manualmente. Editaremos el archivo /etc/hosts de nuestra máquina anfitriona para que asocie la IP de la máquina virtual a nuestro nombre del servidor. 
 Este archivo en Windows se encuentra en el siguiente directorio : 
 C:\Windows\System32\drivers\etc\hosts : 
 
-![Comando15](imagens/15comandoAsignarIpaDominio.png)
+![Comando15](../imagens/15comandoAsignarIpaDominio.png)
 
 Si queremos comprobar las peticiones, podemos hacerlo gracias a un archivo situado en /var/log/nginx/acces.log. Este como el ejemplo nos muestra, registra todas las peticiones. 
 
-![Comando16](imagens/16comandoComprobacionPeticiones.png)
+![Comando16](../imagens/16comandoComprobacionPeticiones.png)
 
 ## Configurar servidor SFTP en Debian.
 Para transferir archivos de nuestra máquina local a nuestra máquina virtual, aunque hay métodos mejores y más modernos, en este caso utilizaremos ftp/sftp. Es un protocolo de transferencia de archivos entre sistemas conectados a una red TCP. La diferencia entre estos, esque debido a la inseguridad de FTP, se le añadió una capa SSH para hacer SFTP y darle más seguridad. 
 En primer lugar instalaremos desde los repositorios: 
-![Comando17](imagens/17comandoUpdate.png)
-![Comando18](imagens/18comandoInstallVsftpd.png)
+![Comando17](../imagens/17comandoUpdate.png)
+![Comando18](../imagens/18comandoInstallVsftpd.png)
 
 Crearemos una carpeta en nuestro home en debian. 
-![Comando19](imagens/19comandoCreacionCarpta.png)
+![Comando19](../imagens/19comandoCreacionCarpta.png)
 
 Iremos a la configuración vsftpd, le indicaremos que este será el directorio al cual vsftpd se cambie después de conectarse el usuario. 
 Ahora crearemos los certificados de seguridad necesarios para aportar la capa de cifrado a nuestra conexión. 
-![Comando20](imagens/20comandoCertificadosSeguridad.png)
+![Comando20](../imagens/20comandoCertificadosSeguridad.png)
 
 Una vez terminado, cambiamos la configuración de vsftpd con el editor de textos. 
 ![Comando21](../imagens/21comandoConfVsftpd.png)
