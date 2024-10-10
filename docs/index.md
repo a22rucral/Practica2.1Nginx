@@ -2,7 +2,7 @@
 ## Instalación servidor web Nginx.
 El primer paso a seguir en esta práctica, es la instalación de nginx en nuestra máquina Debian. Para ello primero deberemos actualizar los repositorios con el comando:  
 
-![Comando1](imagens/1comandoSudoAptUpdate.png)
+![Comando1](../imagens/1comandoSudoAptUpdate.png)
 
 Y luego instalaremos el paquete de Nginx. 
 ```
@@ -86,7 +86,7 @@ Ahora crearemos los certificados de seguridad necesarios para aportar la capa de
 ![Comando20](imagens/20comandoCertificadosSeguridad.png)
 
 Una vez terminado, cambiamos la configuración de vsftpd con el editor de textos. 
-![Comando21](imagens/21comandoConfVsftpd.png)
+![Comando21](../imagens/21comandoConfVsftpd.png)
 
 Bucaremos las siguientes líneas; 
 ```
@@ -95,10 +95,10 @@ rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 ssl_enable=NO
 ```
 Y las sustituiremos por estas. 
-![Comando22](imagens/22comandoModificacionArchivoConf.png)
+![Comando22](../imagens/22comandoModificacionArchivoConf.png)
 
 Tras guardar la configuración, reiniciaremos el servicio. 
-![Comando23](imagens/23ComandoReiniciar.png)
+![Comando23](../imagens/23ComandoReiniciar.png)
 
 ### Cliente SFTP 
 Link descarga : https://filezilla-project.org/download.php?type=client
@@ -106,17 +106,17 @@ Link descarga : https://filezilla-project.org/download.php?type=client
 Utilizaremos SFTP por su seguridad, 
 Indicaremos la ip del servidor, el nombre de usuario, contraseña y el puerto 22, no el 21 en el caso de la captura. 
 
-![Comando24](imagens/24comandoParametroFilezilla.png)
+![Comando24](../imagens/24comandoParametroFilezilla.png)
 
 Aceptamos el certificado desconocido, ya que al ser nuestro servidor no hay peligro. 
 
-![Comando25](imagens/25comandoAceptaCertificadoDesconocido.png)
+![Comando25](../imagens/25comandoAceptaCertificadoDesconocido.png)
 
 Tras esto comprobaremos que la conexión se ha realizado con éxito. 
-![Comando26](imagens/26comandoConexionServidor.png)
+![Comando26](../imagens/26comandoConexionServidor.png)
 Probaremos a subir un archivo desde nuestra máquina local a la virtual. Comprobando que ha sido satisfactoria. 
-![Comando27](imagens/27comandoConfirmaciónSubida.png)
-![Comando28](imagens/28comandoTransaccionSatisfactoria.png)
+![Comando27](../imagens/27comandoConfirmaciónSubida.png)
+![Comando28](../imagens/28comandoTransaccionSatisfactoria.png)
 
 ## HTTPS 
 En este apartado, añadiremos a nuestro servidor una capa de seguridad. Haremos que todos nuestros sitios web alojados hagan uso de los certificados SSL y se acceda a ellos por medio de HTTPS.
@@ -124,7 +124,7 @@ En este apartado, añadiremos a nuestro servidor una capa de seguridad. Haremos 
 Para ello, necesitaremos generar unos certificados autofirados, y cambiar los parametros necesarios en el fichero de configuración de nuestros host virtuales. 
 
 Como primer paso, instalaremos OpenSSL mediante los siguientes comandos; 
-![Comando29](imagens/29comandoUpdateInstallSSL.png)
+![Comando29](../imagens/29comandoUpdateInstallSSL.png)
 
 Crearemos el certificado SSL autofirmado. Explicación de comando; 
     
@@ -134,7 +134,7 @@ Crearemos el certificado SSL autofirmado. Explicación de comando;
     - newkey rsa:2048 Creará una clave RSA de 2048 bits
     - keyout servidor.key : Especifica el archivo donde se guardará la clave privada. 
     - out servidor.crt :  Especifica el archivo donde se guardará el certificado.
-![Comando30](imagens/30comandoCreaciónYConfi.png)
+![Comando30](../imagens/30comandoCreaciónYConfi.png)
 
 Editaremos el archivo del sitio web en Nginx: 
 ```
@@ -142,7 +142,7 @@ $sudo nano /etc/nginx/sites-available/tu_servidor.com
 ```
 Configuraremos el bloque de servidor para HTTPS:
 Añadiremos un bloque de servidor para el puerto 443 (HTTPS). También añadiremos un bloque para redireccionar HTTP a HTTPS para que redirigir las solicitudes HTTP al puerto 443. 
-![Comando31](imagens/31comandoEdiciónArchivoConf.png)
+![Comando31](../imagens/31comandoEdiciónArchivoConf.png)
 
 En caso de que no lo hayas hecho, debemos habilitar el sitio web con el siguiente comando:
 ```
@@ -150,12 +150,12 @@ sudo ln -s /etc/nginx/sites-available/tu_servidor.com /etc/nginx/sites-enabled/
 ```
 
 Y por ultimo, para comprobar la configuración de Nginx ejecuta el siguiente comando: 
-![Comando32](imagens/32comandoComprobaciónConf.png)
+![Comando32](../imagens/32comandoComprobaciónConf.png)
 
 
 ## Resultado 
 Si todo ha salido bien, al buscar tu dominio en el navegador debe darte esta salida: 
-![Comando33](imagens/33comandoVisitaHTTPS.png)
+![Comando33](../imagens/33comandoVisitaHTTPS.png)
 
 
 ### Cuestiones finales 
